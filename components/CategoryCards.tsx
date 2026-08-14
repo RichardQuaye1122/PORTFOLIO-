@@ -1,29 +1,37 @@
 import { Layers, LayoutGrid, ArrowUpRight } from "lucide-react";
 import { categories } from "@/lib/data";
 
-const icons = [Layers, LayoutGrid];
-const styles = [
-  "bg-accent text-black",
-  "bg-accent-lime text-black",
-];
+const icons = {
+  layers: Layers,
+  grid: LayoutGrid,
+};
 
-export default function CategoryCards() {
+const styles = {
+  orange: "bg-accent text-black",
+  lime: "bg-accent-lime text-black",
+};
+
+export default function CategoryCards({
+  className = "",
+}: {
+  className?: string;
+}) {
   return (
-    <section id="skills" className="mt-16 grid gap-5 sm:grid-cols-2">
-      {categories.map((c, i) => {
-        const Icon = icons[i];
+    <section id="skills" className={`grid gap-5 sm:grid-cols-2 ${className}`}>
+      {categories.map((c) => {
+        const Icon = icons[c.icon];
         return (
           <div
             key={c.title}
-            className={`relative flex min-h-[160px] flex-col justify-between overflow-hidden rounded-2xl p-6 ${styles[i]}`}
+            className={`relative flex min-h-[160px] flex-col justify-between overflow-hidden rounded-2xl p-6 ${styles[c.color]}`}
           >
-            <Icon size={26} strokeWidth={1.75} />
+            <Icon size={26} strokeWidth={1.75} aria-hidden />
             <div className="flex items-end justify-between gap-4">
               <p className="font-display text-lg uppercase leading-tight sm:text-xl">
                 {c.title}
               </p>
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-black/70">
-                <ArrowUpRight size={16} />
+                <ArrowUpRight size={16} aria-hidden />
               </span>
             </div>
           </div>

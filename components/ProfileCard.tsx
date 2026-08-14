@@ -29,6 +29,7 @@ export default function ProfileCard() {
       <div className="mt-5 flex items-center justify-center gap-3">
         {profile.socials.map((s) => {
           const Icon = iconMap[s.label as keyof typeof iconMap];
+          if (!Icon) return null;
           return (
             <a
               key={s.label}
@@ -38,7 +39,7 @@ export default function ProfileCard() {
               aria-label={s.label}
               className="flex h-9 w-9 items-center justify-center rounded-full border border-accent text-accent transition hover:bg-accent hover:text-white"
             >
-              <Icon size={16} strokeWidth={1.75} />
+              <Icon size={16} strokeWidth={1.75} aria-hidden />
             </a>
           );
         })}

@@ -2,10 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, FolderOpen, Briefcase, Wrench, PenSquare } from "lucide-react";
+import {
+  Home,
+  User,
+  FolderOpen,
+  Briefcase,
+  Wrench,
+  PenSquare,
+} from "lucide-react";
 
 const links = [
   { icon: Home, href: "/", label: "Home" },
+  { icon: User, href: "/about", label: "About" },
   { icon: FolderOpen, href: "/projects", label: "Projects" },
   { icon: Briefcase, href: "/experience", label: "Experience" },
   { icon: Wrench, href: "/skills", label: "Skills" },
@@ -30,7 +38,7 @@ export default function Navbar() {
                 : "text-white/70 hover:bg-white/10 hover:text-white"
             }`}
           >
-            <Icon size={17} strokeWidth={1.75} />
+            <Icon size={17} strokeWidth={1.75} aria-hidden />
           </Link>
         );
       })}

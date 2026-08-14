@@ -6,5 +6,5 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  return <Footer />;
+  return <Footer className="pt-4" withForm variant="page" />;
 }

@@ -1,16 +1,10 @@
+import SectionHeading from "@/components/SectionHeading";
 import { hero } from "@/lib/data";
 
 export default function Hero() {
   return (
     <section id="top" className="pt-4">
-      <h1 className="font-display leading-[0.9] tracking-tight">
-        <span className="block text-[13vw] text-white sm:text-[7vw] lg:text-[5.5vw]">
-          {hero.titleTop}
-        </span>
-        <span className="text-outline block text-[13vw] sm:text-[7vw] lg:text-[5.5vw]">
-          {hero.titleBottom}
-        </span>
-      </h1>
+      <SectionHeading top={hero.titleTop} bottom={hero.titleBottom} size="page" />
 
       <p className="mt-6 max-w-md text-base text-muted sm:text-lg">
         {hero.description}

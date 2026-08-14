@@ -1,22 +1,20 @@
 import type { Metadata } from "next";
+import SectionHeading from "@/components/SectionHeading";
 import CategoryCards from "@/components/CategoryCards";
+import SkillGroups from "@/components/SkillGroups";
 
 export const metadata: Metadata = {
   title: "Skills — Richard Cole",
+  description:
+    "The languages, frameworks, and infrastructure Richard Cole works with day to day.",
 };
 
 export default function SkillsPage() {
   return (
     <div className="pt-4">
-      <h1 className="font-display leading-[0.9] tracking-tight">
-        <span className="block text-[13vw] text-white sm:text-[7vw] lg:text-[5.5vw]">
-          SKILLS &
-        </span>
-        <span className="text-outline block text-[13vw] sm:text-[7vw] lg:text-[5.5vw]">
-          TOOLS
-        </span>
-      </h1>
-      <CategoryCards />
+      <SectionHeading top="SKILLS &" bottom="TOOLS" size="page" />
+      <CategoryCards className="mt-12" />
+      <SkillGroups className="mt-5" />
     </div>
   );
 }
