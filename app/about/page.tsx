@@ -4,9 +4,9 @@ import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
 
 export const metadata: Metadata = {
-  title: "About — Richard Cole",
+  title: "About — Richard Quaye",
   description:
-    "Background, focus areas, and the kind of engineering work Richard Cole takes on.",
+    "Background, focus areas, and the kind of engineering work Richard Quaye takes on.",
 };
 
 export default function AboutPage() {

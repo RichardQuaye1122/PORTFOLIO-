@@ -4,9 +4,9 @@ import CategoryCards from "@/components/CategoryCards";
 import SkillGroups from "@/components/SkillGroups";
 
 export const metadata: Metadata = {
-  title: "Skills — Richard Cole",
+  title: "Skills — Richard Quaye",
   description:
-    "The languages, frameworks, and infrastructure Richard Cole works with day to day.",
+    "The languages, frameworks, and infrastructure Richard Quaye works with day to day.",
 };
 
 export default function SkillsPage() {

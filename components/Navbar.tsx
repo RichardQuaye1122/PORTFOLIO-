@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import {
   Home,
   User,
@@ -24,24 +25,37 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky top-6 z-50 mx-auto mb-16 flex w-fit items-center gap-2 rounded-full border border-white/10 bg-[#141414]/90 px-3 py-3 backdrop-blur">
+    <motion.nav
+      initial={{ opacity: 0, y: -16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="sticky top-6 z-50 mx-auto mb-16 flex w-fit items-center gap-2 rounded-full border border-white/10 bg-[#141414]/90 px-3 py-3 backdrop-blur"
+    >
       {links.map(({ icon: Icon, href, label }) => {
         const active = pathname === href;
         return (
-          <Link
-            key={label}
-            href={href}
-            aria-label={label}
-            className={`flex h-9 w-9 items-center justify-center rounded-full transition ${
-              active
-                ? "bg-accent text-white"
-                : "text-white/70 hover:bg-white/10 hover:text-white"
-            }`}
-          >
-            <Icon size={17} strokeWidth={1.75} aria-hidden />
+          <Link key={label} href={href} aria-label={label} className="relative">
+            {active && (
+              <motion.span
+                layoutId="nav-active"
+                transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                className="absolute inset-0 rounded-full bg-accent"
+              />
+            )}
+            <motion.span
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.92 }}
+              className={`relative flex h-9 w-9 items-center justify-center rounded-full transition-colors ${
+                active
+                  ? "text-white"
+                  : "text-white/70 hover:bg-white/10 hover:text-white"
+              }`}
+            >
+              <Icon size={17} strokeWidth={1.75} aria-hidden />
+            </motion.span>
           </Link>
         );
       })}
-    </nav>
+    </motion.nav>
   );
 }

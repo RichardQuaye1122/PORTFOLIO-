@@ -1,11 +1,22 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { GraduationCap, BadgeCheck } from "lucide-react";
 import { education, certifications } from "@/lib/data";
+import { fadeUp, stagger, viewport, easeOut } from "@/lib/motion";
 
 export default function Education({ className = "" }: { className?: string }) {
   return (
-    <section id="education" className={className}>
+    <motion.section
+      id="education"
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewport}
+      variants={stagger}
+      className={className}
+    >
       <div className="grid gap-10 sm:grid-cols-2">
-        <div>
+        <motion.div variants={fadeUp} transition={{ duration: 0.5, ease: easeOut }}>
           <h2 className="flex items-center gap-2 font-display text-sm uppercase tracking-wide text-accent">
             <GraduationCap size={18} aria-hidden />
             Education
@@ -23,9 +34,9 @@ export default function Education({ className = "" }: { className?: string }) {
               </li>
             ))}
           </ul>
-        </div>
+        </motion.div>
 
-        <div>
+        <motion.div variants={fadeUp} transition={{ duration: 0.5, ease: easeOut }}>
           <h2 className="flex items-center gap-2 font-display text-sm uppercase tracking-wide text-accent-lime">
             <BadgeCheck size={18} aria-hidden />
             Certifications
@@ -43,8 +54,8 @@ export default function Education({ className = "" }: { className?: string }) {
               </li>
             ))}
           </ul>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

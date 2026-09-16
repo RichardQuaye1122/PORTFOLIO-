@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Send } from "lucide-react";
 
 type Status =
@@ -106,24 +107,42 @@ export default function ContactForm() {
         className={`${inputClass} mt-3 resize-y`}
       />
 
-      <button
+      <motion.button
         type="submit"
         disabled={sending}
+        whileHover={{ scale: sending ? 1 : 1.02 }}
+        whileTap={{ scale: sending ? 1 : 0.98 }}
         className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-8 py-3 font-medium text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
       >
         <Send size={16} aria-hidden />
         {sending ? "Sending…" : "Send message"}
-      </button>
+      </motion.button>
 
       <p aria-live="polite" className="mt-3 min-h-5 text-center text-sm">
-        {status.state === "sent" && (
-          <span className="text-green-700">
-            Thanks — your message is on its way.
-          </span>
-        )}
-        {status.state === "error" && (
-          <span className="text-red-600">{status.message}</span>
-        )}
+        <AnimatePresence mode="wait">
+          {status.state === "sent" && (
+            <motion.span
+              key="sent"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              className="text-green-700"
+            >
+              Thanks — your message is on its way.
+            </motion.span>
+          )}
+          {status.state === "error" && (
+            <motion.span
+              key="error"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              className="text-red-600"
+            >
+              {status.message}
+            </motion.span>
+          )}
+        </AnimatePresence>
       </p>
     </form>
   );

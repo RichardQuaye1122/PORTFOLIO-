@@ -1,9 +1,14 @@
-import { Layers, LayoutGrid, ArrowUpRight } from "lucide-react";
+"use client";
+
+import { motion } from "framer-motion";
+import { Layers, LayoutGrid, Sparkles, ArrowUpRight } from "lucide-react";
 import { categories } from "@/lib/data";
+import { fadeUp, stagger, viewport, easeOut } from "@/lib/motion";
 
 const icons = {
   layers: Layers,
   grid: LayoutGrid,
+  sparkles: Sparkles,
 };
 
 const styles = {
@@ -17,12 +22,22 @@ export default function CategoryCards({
   className?: string;
 }) {
   return (
-    <section id="skills" className={`grid gap-5 sm:grid-cols-2 ${className}`}>
+    <motion.section
+      id="skills"
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewport}
+      variants={stagger}
+      className={`grid gap-5 sm:grid-cols-2 ${className}`}
+    >
       {categories.map((c) => {
         const Icon = icons[c.icon];
         return (
-          <div
+          <motion.div
             key={c.title}
+            variants={fadeUp}
+            transition={{ duration: 0.5, ease: easeOut }}
+            whileHover={{ y: -4 }}
             className={`relative flex min-h-[160px] flex-col justify-between overflow-hidden rounded-2xl p-6 ${styles[c.color]}`}
           >
             <Icon size={26} strokeWidth={1.75} aria-hidden />
@@ -34,9 +49,9 @@ export default function CategoryCards({
                 <ArrowUpRight size={16} aria-hidden />
               </span>
             </div>
-          </div>
+          </motion.div>
         );
       })}
-    </section>
+    </motion.section>
   );
 }

@@ -1,6 +1,10 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import { testimonials } from "@/lib/data";
+import { fadeUp, stagger, viewport, easeOut } from "@/lib/motion";
 
 export default function Testimonials({
   className = "",
@@ -11,10 +15,18 @@ export default function Testimonials({
     <section id="testimonials" className={className}>
       <SectionHeading top="KIND" bottom="WORDS" />
 
-      <div className="mt-12 grid gap-5 sm:grid-cols-2">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewport}
+        variants={stagger}
+        className="mt-12 grid gap-5 sm:grid-cols-2"
+      >
         {testimonials.map((t) => (
-          <figure
+          <motion.figure
             key={t.name}
+            variants={fadeUp}
+            transition={{ duration: 0.5, ease: easeOut }}
             className="flex flex-col rounded-2xl border border-white/10 p-7"
           >
             <Quote size={22} aria-hidden className="text-accent" />
@@ -27,9 +39,9 @@ export default function Testimonials({
               </span>
               <span className="block text-xs text-muted">{t.role}</span>
             </figcaption>
-          </figure>
+          </motion.figure>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

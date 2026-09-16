@@ -3,9 +3,9 @@ import Experience from "@/components/Experience";
 import Education from "@/components/Education";
 
 export const metadata: Metadata = {
-  title: "Experience — Richard Cole",
+  title: "Experience — Richard Quaye",
   description:
-    "Roles, results, and the stacks behind eight years of shipping software.",
+    "Roles, results, and the stacks behind two years of shipping software.",
 };
 
 export default function ExperiencePage() {

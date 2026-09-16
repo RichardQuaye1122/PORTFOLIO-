@@ -1,5 +1,9 @@
+"use client";
+
+import { motion } from "framer-motion";
 import ContactForm from "@/components/ContactForm";
 import { type SectionVariant } from "@/components/SectionHeading";
+import { viewport, easeOut } from "@/lib/motion";
 
 export default function Footer({
   className = "",
@@ -15,7 +19,13 @@ export default function Footer({
 
   return (
     <footer id="contact" className={className}>
-      <div className="rounded-3xl bg-white p-10 text-center text-[#0a0a0a] sm:p-16">
+      <motion.div
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={viewport}
+        transition={{ duration: 0.6, ease: easeOut }}
+        className="rounded-3xl bg-white p-10 text-center text-[#0a0a0a] sm:p-16"
+      >
         <Heading className="font-display text-3xl leading-tight sm:text-5xl">
           LET&apos;S BUILD SOMETHING GREAT
         </Heading>
@@ -27,16 +37,18 @@ export default function Footer({
         {withForm ? (
           <ContactForm />
         ) : (
-          <a
-            href="mailto:hello@richardcole.dev"
+          <motion.a
+            href="mailto:hello@richardquaye.dev"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
             className="mt-8 inline-flex items-center justify-center rounded-full bg-accent px-8 py-3 font-medium text-white transition hover:opacity-90"
           >
-            hello@richardcole.dev
-          </a>
+            hello@richardquaye.dev
+          </motion.a>
         )}
-      </div>
+      </motion.div>
       <p className="mt-10 text-center text-xs text-white/30">
-        © {new Date().getFullYear()} Richard Cole. All rights reserved.
+        © {new Date().getFullYear()} Richard Quaye. All rights reserved.
       </p>
     </footer>
   );

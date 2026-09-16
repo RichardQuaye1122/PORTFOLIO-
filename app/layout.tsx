@@ -3,11 +3,12 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import ProfileCard from "@/components/ProfileCard";
 import FloatingBadges from "@/components/FloatingBadges";
+import PageTransition from "@/components/PageTransition";
 
 export const metadata: Metadata = {
-  title: "Richard Cole — Software Engineer",
+  title: "Richard Quaye — Software Engineer",
   description:
-    "Portfolio of Richard Cole, a software engineer specializing in full-stack development and product engineering.",
+    "Portfolio of Richard Quaye, a software engineer specializing in full-stack development, AI, and product engineering.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -23,7 +24,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 <ProfileCard />
               </aside>
 
-              <main className="pb-24">{children}</main>
+              <main className="pb-24">
+                <PageTransition>{children}</PageTransition>
+              </main>
             </div>
           </div>
 

@@ -1,3 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { viewport, easeOut } from "@/lib/motion";
+
 // A section rendered as a whole page gets the large scale and the <h1>;
 // stacked on the home page it gets the smaller scale and an <h2>.
 export type SectionVariant = "page" | "section";
@@ -23,10 +28,28 @@ export default function SectionHeading({
       : "text-[10vw] sm:text-[4.5vw]";
   const Tag = size === "page" ? "h1" : "h2";
 
+  const MotionTag = motion[Tag];
+
   return (
-    <Tag className="font-display leading-[0.9] tracking-tight">
-      <span className={`block text-white ${scale}`}>{top}</span>
-      <span className={`text-outline block ${scale}`}>{bottom}</span>
-    </Tag>
+    <MotionTag className="font-display leading-[0.9] tracking-tight">
+      <motion.span
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={viewport}
+        transition={{ duration: 0.6, ease: easeOut }}
+        className={`block text-white ${scale}`}
+      >
+        {top}
+      </motion.span>
+      <motion.span
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={viewport}
+        transition={{ duration: 0.6, delay: 0.08, ease: easeOut }}
+        className={`text-outline block ${scale}`}
+      >
+        {bottom}
+      </motion.span>
+    </MotionTag>
   );
 }

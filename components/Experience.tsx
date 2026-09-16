@@ -1,7 +1,11 @@
+"use client";
+
+import { motion } from "framer-motion";
 import SectionHeading, {
   type SectionVariant,
 } from "@/components/SectionHeading";
 import { experience } from "@/lib/data";
+import { fadeUp, stagger, viewport, easeOut } from "@/lib/motion";
 
 export default function Experience({
   className = "",
@@ -16,11 +20,22 @@ export default function Experience({
 
   return (
     <section id="experience" className={className}>
-      <SectionHeading top="8 YEARS OF" bottom="EXPERIENCE" size={variant} />
+      <SectionHeading top="2 YEARS OF" bottom="EXPERIENCE" size={variant} />
 
-      <div className="mt-12 flex flex-col divide-y divide-white/10 border-t border-white/10">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewport}
+        variants={stagger}
+        className="mt-12 flex flex-col divide-y divide-white/10 border-t border-white/10"
+      >
         {experience.map((e) => (
-          <div key={e.company} className="flex flex-col gap-3 py-8">
+          <motion.div
+            key={e.company}
+            variants={fadeUp}
+            transition={{ duration: 0.5, ease: easeOut }}
+            className="flex flex-col gap-3 py-8"
+          >
             <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-1">
               <div>
                 <ItemHeading className="font-display text-xl text-white sm:text-2xl">
@@ -58,9 +73,9 @@ export default function Experience({
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

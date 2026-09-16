@@ -1,15 +1,16 @@
 export const profile = {
-  name: "Richard Cole",
+  name: "Richard Quaye",
   role: "Software Engineer",
   tagline:
     "A Software Engineer who has developed countless innovative solutions.",
   // Drop the file in public/ and set this to "/resume.pdf" to show the badge.
   resumeUrl: "",
   socials: [
-    { label: "GitHub", href: "https://github.com" },
-    { label: "LinkedIn", href: "https://linkedin.com" },
-    { label: "Twitter", href: "https://twitter.com" },
-    { label: "Dribbble", href: "https://dribbble.com" },
+    { label: "GitHub", href: "https://github.com/RichardQuaye1122" },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/quaye-richard-a38920363/",
+    },
   ],
 };
 
@@ -17,9 +18,9 @@ export const hero = {
   titleTop: "SOFTWARE",
   titleBottom: "ENGINEER",
   description:
-    "Passionate about building fast, reliable products. I specialize in turning ambitious ideas into clean, scalable software.",
+    "Passionate about building fast, reliable products. I specialize in turning ambitious ideas into clean, scalable software — full-stack and AI.",
   stats: [
-    { value: "8+", label: "Years of\nExperience" },
+    { value: "2+", label: "Years of\nExperience" },
     { value: "40+", label: "Projects\nCompleted" },
     { value: "25+", label: "Worldwide\nClients" },
   ],
@@ -28,7 +29,7 @@ export const hero = {
 export const categories: {
   title: string;
   color: "orange" | "lime";
-  icon: "layers" | "grid";
+  icon: "layers" | "grid" | "sparkles";
 }[] = [
   {
     title: "Full-Stack Development, System Design",
@@ -40,11 +41,17 @@ export const categories: {
     color: "lime",
     icon: "grid",
   },
+  {
+    title: "AI Engineering, LLM Integrations",
+    color: "orange",
+    icon: "sparkles",
+  },
 ];
 
-// `href` is optional — a project without one renders as plain text instead of
-// a link that goes nowhere.
+// `href` is optional — a project without one renders without a "Live" button.
+// Every project always gets a detail page at /projects/[slug].
 export const projects: {
+  slug: string;
   name: string;
   type: string;
   gradient: string;
@@ -55,6 +62,7 @@ export const projects: {
   href?: string;
 }[] = [
   {
+    slug: "pulse",
     name: "Pulse",
     type: "SaaS Analytics Dashboard",
     gradient: "from-violet-600 to-fuchsia-500",
@@ -65,6 +73,7 @@ export const projects: {
     stack: ["Next.js", "TypeScript", "ClickHouse", "Redis"],
   },
   {
+    slug: "horizon",
     name: "Horizon",
     type: "E-Commerce Platform",
     gradient: "from-slate-200 to-slate-400",
@@ -75,6 +84,7 @@ export const projects: {
     stack: ["Next.js", "Node.js", "PostgreSQL", "Stripe"],
   },
   {
+    slug: "nimbus",
     name: "Nimbus",
     type: "Cloud Infrastructure Tool",
     gradient: "from-orange-500 to-amber-400",
@@ -85,6 +95,7 @@ export const projects: {
     stack: ["Go", "Terraform", "AWS", "React"],
   },
   {
+    slug: "fieldbook",
     name: "Fieldbook",
     type: "Mobile App for Sales Teams",
     gradient: "from-emerald-500 to-teal-400",
@@ -142,8 +153,8 @@ export const about = {
   titleTop: "ABOUT",
   titleBottom: "ME",
   paragraphs: [
-    "I'm a software engineer with eight years spent mostly on the unglamorous half of product work: the data models, the deploy pipeline, the request that got slow and nobody knows why. I like that half.",
-    "Most of my work sits between frontend and infrastructure — shipping interfaces people use daily, then making sure the systems behind them stay boring under load. I care about code that the next person can read, and about shipping something small this week over something perfect next quarter.",
+    "I'm a software engineer with two years spent mostly on the unglamorous half of product work: the data models, the deploy pipeline, the request that got slow and nobody knows why. I like that half.",
+    "Most of my work sits between frontend and infrastructure — shipping interfaces people use daily, then making sure the systems behind them stay boring under load. Lately that includes full-stack product work alongside AI: building LLM-powered features, RAG pipelines, and the agent tooling behind them. I care about code that the next person can read, and about shipping something small this week over something perfect next quarter.",
     "Outside work I write about system design, contribute to a couple of open-source tools, and spend more time than I should tuning my editor config.",
   ],
   facts: [
@@ -206,6 +217,17 @@ export const skillGroups = [
       "Technical writing",
       "Mentoring",
       "Incident response",
+    ],
+  },
+  {
+    title: "AI",
+    items: [
+      "LLM integrations",
+      "RAG pipelines",
+      "Prompt engineering",
+      "Agent tooling",
+      "Vector databases",
+      "Python",
     ],
   },
 ];
