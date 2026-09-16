@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import SectionHeading, {
@@ -39,8 +40,18 @@ export default function Projects({
             className="group relative flex items-start gap-6 py-8"
           >
             <div
-              className={`h-16 w-16 shrink-0 rounded-xl bg-gradient-to-br ${p.gradient}`}
-            />
+              className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-gradient-to-br ${p.gradient}`}
+            >
+              {p.image && (
+                <Image
+                  src={p.image}
+                  alt=""
+                  fill
+                  sizes="64px"
+                  className="object-cover object-top"
+                />
+              )}
+            </div>
             <div className="flex-1">
               <div className="flex items-start justify-between gap-4">
                 <div>

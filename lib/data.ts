@@ -49,18 +49,33 @@ export const categories: {
 ];
 
 // `href` is optional — a project without one renders without a "Live" button.
+// `image` is optional — a project without one falls back to the gradient block.
 // Every project always gets a detail page at /projects/[slug].
 export const projects: {
   slug: string;
   name: string;
   type: string;
   gradient: string;
+  image?: string;
   year: string;
   role: string;
   description: string;
   stack: string[];
   href?: string;
 }[] = [
+  {
+    slug: "chopsmart",
+    name: "ChopSmart",
+    type: "AI Cooking Assistant",
+    gradient: "from-orange-500 to-amber-400",
+    image: "/chopsmart.png",
+    year: "2025",
+    role: "Full-Stack & AI Engineer",
+    description:
+      "Tell it what's in your fridge, how much time you've got, or what you're craving, and it turns that into one real recipe — not an endless list. Includes an agent mode and smart ingredient substitutions.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "OpenAI API"],
+    href: "https://chopsmart-agent.vercel.app/",
+  },
   {
     slug: "pulse",
     name: "Pulse",

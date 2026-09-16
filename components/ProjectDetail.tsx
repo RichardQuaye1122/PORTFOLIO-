@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import type { projects } from "@/lib/data";
@@ -31,8 +32,19 @@ export default function ProjectDetail({
       <motion.div
         variants={fadeUp}
         transition={{ duration: 0.6, ease: easeOut }}
-        className={`mt-8 h-40 w-full rounded-2xl bg-gradient-to-br sm:h-56 ${project.gradient}`}
-      />
+        className={`relative mt-8 h-56 w-full overflow-hidden rounded-2xl bg-gradient-to-br sm:h-[420px] ${project.gradient}`}
+      >
+        {project.image && (
+          <Image
+            src={project.image}
+            alt={`${project.name} screenshot`}
+            fill
+            sizes="(min-width: 640px) 800px, 100vw"
+            className="object-cover object-top"
+            priority
+          />
+        )}
+      </motion.div>
 
       <motion.div
         variants={fadeUp}
