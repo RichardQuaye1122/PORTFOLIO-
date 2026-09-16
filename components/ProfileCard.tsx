@@ -35,11 +35,7 @@ export default function ProfileCard() {
 
       <h2 className="font-display text-xl leading-none">{profile.name}</h2>
 
-      <div className="mx-auto my-3 flex h-8 w-8 items-center justify-center rounded-full bg-accent text-white">
-        <span className="text-sm">🔥</span>
-      </div>
-
-      <p className="mx-auto max-w-[210px] text-sm leading-snug text-black/60">
+      <p className="mx-auto mt-3 max-w-[210px] text-sm leading-snug text-black/60">
         {profile.tagline}
       </p>
 

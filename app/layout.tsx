@@ -6,9 +6,51 @@ import FloatingBadges from "@/components/FloatingBadges";
 import PageTransition from "@/components/PageTransition";
 
 export const metadata: Metadata = {
-  title: "Richard Quaye — Software Engineer",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ||
+      (process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "https://portfolio-virid-two-88.vercel.app")
+  ),
+  title: {
+    default: "Richard Quaye — Software Engineer",
+    template: "%s — Richard Quaye",
+  },
   description:
-    "Portfolio of Richard Quaye, a software engineer specializing in full-stack development, AI, and product engineering.",
+    "Portfolio of Richard Quaye, a software engineer specializing in full-stack development, AI engineering, and product systems.",
+  keywords: [
+    "Richard Quaye",
+    "Software Engineer",
+    "Full-Stack Developer",
+    "AI Engineer",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "System Design",
+    "Portfolio",
+  ],
+  authors: [{ name: "Richard Quaye", url: "https://github.com/RichardQuaye1122" }],
+  creator: "Richard Quaye",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://portfolio-virid-two-88.vercel.app",
+    siteName: "Richard Quaye — Portfolio",
+    title: "Richard Quaye — Software Engineer",
+    description:
+      "Full-stack and AI engineer building fast, reliable products and scalable systems.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Richard Quaye — Software Engineer",
+    description:
+      "Full-stack and AI engineer building fast, reliable products and scalable systems.",
+    creator: "@RichardQuaye",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
