@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ff7a00">
+<meta name="description" content="Okada Boss — papers, daily money and union dues for commercial motorcycle riders in Ghana.">
+<title>Okada Boss</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon.svg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="offline-bar" data-i18n="offline">No network — your work is still saved on this phone</div>
+
+<header class="topbar">
+  <div class="brand"><span class="dot" id="netdot"></span>Okada&nbsp;Boss</div>
+  <button class="lang-btn" id="langBtn" type="button">EN</button>
+</header>
+
+<main>
+  <!-- ================= MONEY ================= -->
+  <section class="view active" id="view-money">
+    <div class="datestrip">
+      <button class="icon-btn" id="dayPrev" type="button" aria-label="Previous day">&#8249;</button>
+      <div class="day" id="dayLabel">Today</div>
+      <button class="icon-btn" id="dayNext" type="button" aria-label="Next day">&#8250;</button>
+    </div>
+
+    <div class="card pocket">
+      <p class="label" data-i18n="inPocket">In your pocket</p>
+      <div class="amount" id="netAmount"><span class="cur">GHS</span> 0</div>
+      <p class="muted" id="netSub">No work recorded yet</p>
+    </div>
+
+    <div class="card">
+      <p class="label" data-i18n="addFare">Add a fare</p>
+      <div class="quickrow" id="quickRow"></div>
+      <div class="addrow">
+        <input id="fareInput" type="number" inputmode="decimal" min="0" step="0.5" placeholder="0.00">
+        <button class="btn" id="fareAdd" type="button" data-i18n="add">Add</button>
+      </div>
+      <div class="chiplist" id="fareChips"></div>
+    </div>
+
+    <div class="card">
+      <p class="label" data-i18n="costs">What you paid out today</p>
+      <div id="costRows"></div>
+      <div class="totals"><span data-i18n="gross">Fares collected</span><strong id="tGross">0.00</strong></div>
+      <div class="totals"><span data-i18n="outgo">Paid out</span><strong id="tOut">0.00</strong></div>
+      <div class="totals big"><span data-i18n="net">Left for you</span><strong id="tNet">0.00</strong></div>
+    </div>
+
+    <div class="card">
+      <p class="label" data-i18n="last7">Last 7 days</p>
+      <div class="bars" id="weekBars"></div>
+      <div class="totals"><span data-i18n="weekNet">Week total left for you</span><strong id="weekNet">0.00</strong></div>
+      <div class="totals"><span data-i18n="weekAvg">Daily average</span><strong id="weekAvg">0.00</strong></div>
+    </div>
+  </section>
+
+  <!-- ================= PAPERS ================= -->
+  <section class="view" id="view-papers">
+    <h2 class="view-title" data-i18n="papersTitle">Your papers</h2>
+
+    <div class="card deadline">
+      <p class="label" data-i18n="deadlineLabel">Time left in the transition window</p>
+      <div class="days" id="deadlineDays">—</div>
+      <p class="muted" id="deadlineSub"></p>
+      <div class="field" style="margin-top:12px">
+        <p class="label" data-i18n="deadlineSet">Deadline date</p>
+        <input type="date" id="deadlineInput">
+      </div>
+      <div class="notice" data-i18n="deadlineNote">
+        This date is a placeholder. Confirm the real deadline for your region with DVLA or the NRSA
+        and change it here.
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="label"><span data-i18n="progress">Progress</span> — <span id="paperCount">0 / 0</span></p>
+      <div class="progress-wrap"><i id="paperBar" style="width:0%"></i></div>
+      <p class="muted" data-i18n="tapToChange">Tap the square to change status: empty &rarr; working on it &rarr; done</p>
+      <div id="paperList" style="margin-top:8px"></div>
+      <div class="notice" data-i18n="papersNote">
+        Checklist built from public reporting on the Road Traffic Regulations, 2026 (L.I. 2519).
+        Verify every requirement and fee against the gazetted instrument or your DVLA office before you pay anybody.
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DUES ================= -->
+  <section class="view" id="view-dues">
+    <h2 class="view-title" data-i18n="duesTitle">Union dues</h2>
+
+    <div class="card">
+      <div class="field">
+        <p class="label" data-i18n="unionName">Union / association</p>
+        <input id="unionName" placeholder="e.g. Kumasi Okada Riders Assoc.">
+      </div>
+      <div class="field">
+        <p class="label" data-i18n="memberId">Member number</p>
+        <input id="memberId" placeholder="e.g. KO-0412">
+      </div>
+      <div class="field">
+        <p class="label" data-i18n="duesAmount">Dues amount (GHS)</p>
+        <input id="duesAmount" type="number" inputmode="decimal" min="0" step="0.5" placeholder="5">
+      </div>
+      <div class="field">
+        <p class="label" data-i18n="duesFreq">How often</p>
+        <select id="duesFreq">
+          <option value="daily" data-i18n="daily">Every day</option>
+          <option value="weekly" data-i18n="weekly">Every week</option>
+          <option value="monthly" data-i18n="monthly">Every month</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="label" data-i18n="duesStatus">Status</p>
+      <div class="totals big"><span data-i18n="paidTotal">Paid in total</span><strong id="duesPaid">0.00</strong></div>
+      <p class="muted" id="duesSub" style="margin-top:6px"></p>
+    </div>
+
+    <div class="card">
+      <p class="label" data-i18n="logPayment">Record a payment</p>
+      <div class="field">
+        <p class="label" data-i18n="amount">Amount (GHS)</p>
+        <input id="payAmount" type="number" inputmode="decimal" min="0" step="0.5" placeholder="5">
+      </div>
+      <div class="field">
+        <p class="label" data-i18n="payDate">Date</p>
+        <input id="payDate" type="date">
+      </div>
+      <div class="field">
+        <p class="label" data-i18n="payMethod">Paid with</p>
+        <select id="payMethod">
+          <option value="MTN MoMo">MTN MoMo</option>
+          <option value="Telecel Cash">Telecel Cash</option>
+          <option value="AT Money">AT Money</option>
+          <option value="Cash">Cash</option>
+        </select>
+      </div>
+      <div class="field">
+        <p class="label" data-i18n="payRef">Transaction ID / receipt no.</p>
+        <input id="payRef" placeholder="optional">
+      </div>
+      <button class="btn block" id="payAdd" type="button" data-i18n="savePayment">Save payment</button>
+      <div class="notice" data-i18n="duesNote">
+        This records payments you have already made so you have proof. It does not move money.
+        Automatic MoMo collection comes with the union pilot.
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="label" data-i18n="history">Payment history</p>
+      <div id="payList"></div>
+    </div>
+  </section>
+
+  <!-- ================= SOS ================= -->
+  <section class="view" id="view-sos">
+    <h2 class="view-title" data-i18n="sosTitle">Emergency &amp; bike</h2>
+
+    <div class="card">
+      <button class="sos-btn" id="sosBtn" type="button">SOS</button>
+      <p class="muted" style="margin-top:10px" data-i18n="sosHelp">
+        Sends your location and bike details to your emergency contact on WhatsApp or SMS.
+      </p>
+      <div id="sosActions" style="margin-top:10px"></div>
+    </div>
+
+    <div class="card">
+      <p class="label" data-i18n="emergencyContact">Emergency contact</p>
+      <div class="field">
+        <p class="label" data-i18n="name">Name</p>
+        <input id="nokName" placeholder="e.g. Ama (sister)">
+      </div>
+      <div class="field">
+        <p class="label" data-i18n="phone">Phone (with 233)</p>
+        <input id="nokPhone" type="tel" inputmode="tel" placeholder="233241234567">
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="label" data-i18n="bikeDetails">Your bike — for theft reports</p>
+      <div class="field">
+        <p class="label" data-i18n="regNo">Registration number</p>
+        <input id="bikeReg" placeholder="e.g. M-1234-26">
+      </div>
+      <div class="field">
+        <p class="label" data-i18n="chassis">Chassis / engine number</p>
+        <input id="bikeChassis" placeholder="write it down now, not after">
+      </div>
+      <div class="field">
+        <p class="label" data-i18n="ownerDropLabel">Daily drop to bike owner (work &amp; pay)</p>
+        <input id="ownerDrop" type="number" inputmode="decimal" min="0" step="1" placeholder="0">
+      </div>
+      <p class="muted" data-i18n="ownerDropHelp">If you set this, it fills in automatically each day.</p>
+    </div>
+
+    <div class="card">
+      <p class="label" data-i18n="yourData">Your data</p>
+      <p class="muted" data-i18n="dataHelp">Everything stays on this phone. Nothing is sent anywhere.</p>
+      <div style="display:flex; gap:8px; margin-top:10px">
+        <button class="btn ghost" id="exportBtn" type="button" data-i18n="export">Export backup</button>
+        <button class="btn danger" id="resetBtn" type="button" data-i18n="reset">Erase all</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<nav class="tabs">
+  <button class="tab active" data-view="money" type="button">
+    <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg>
+    <span data-i18n="tabMoney">Money</span>
+  </button>
+  <button class="tab" data-view="papers" type="button">
+    <svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M9 14l2 2 4-4"/></svg>
+    <span data-i18n="tabPapers">Papers</span>
+  </button>
+  <button class="tab" data-view="dues" type="button">
+    <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><path d="M17 11h4M19 9v4"/></svg>
+    <span data-i18n="tabDues">Dues</span>
+  </button>
+  <button class="tab" data-view="sos" type="button">
+    <svg viewBox="0 0 24 24"><path d="M12 3l9 16H3z"/><path d="M12 9v4M12 16h.01"/></svg>
+    <span data-i18n="tabSos">SOS</span>
+  </button>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

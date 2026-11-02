@@ -1,0 +1,16 @@
+{
+  "name": "Okada Boss",
+  "short_name": "Okada Boss",
+  "description": "Papers, daily money and union dues for commercial motorcycle riders in Ghana.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#ff7a00",
+  "lang": "en",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icons/maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
